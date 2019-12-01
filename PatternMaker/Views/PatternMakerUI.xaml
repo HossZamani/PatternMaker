@@ -1,0 +1,230 @@
+﻿<MahControls:MetroWindow x:Class="PatternMaker.Views.PatternMakerUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:MahControls="http://metro.mahapps.com/winfx/xaml/controls"
+             SizeToContent="WidthAndHeight" 
+             Title="Pattern Maker" 
+             BorderThickness="0" 
+             FontSize="14" 
+             ResizeMode="NoResize" 
+             Loaded ="Window_Loaded"
+             Closed="Window_Closed" >
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF43A9E4" Offset="0"/>
+            <GradientStop Color="#FFF3F3F3" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+
+                <!-- accent resource -->
+                <!-- change "Cobalt" to the accent color you want -->
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Cobalt.xaml" />
+
+                <!-- theme resource -->
+                <!-- change "BaseLight" to the theme you want -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <StackPanel>
+        <StackPanel>
+            <Expander 
+                Header="  Notes  " 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top"
+                Margin="10"
+                IsExpanded="False">
+                
+                <TextBlock 
+                    HorizontalAlignment="Center" 
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Top" 
+                    Width="340" 
+                    FontFamily="DIN Light"
+                    Padding="10">
+                    
+                    <Run Text="By clicking Ok, this tool will create a drafting view so you draw your design. You can preview the pattern before creating it using &quot;Preview attern&quot; button on the next window."/>
+                    
+                    <LineBreak/>
+                    <LineBreak/>
+                    
+                    <Run Text="Based on complexity and other factors, some patterns may take upto ~ 5 min to be created, during which Revit will be non-responsive."/>
+                    
+                    
+                    <LineBreak/>
+                    <LineBreak/>
+                    <Run Text="This tool is only a C# port of a tool with same functionality on the popular Revit development framework: pyRevit. The hard work of creating the pattern making engine is done by Ehsan Iran-Nejad."/>
+                    
+                    <LineBreak/>
+                    <LineBreak/>
+                    
+                    <Run Text="All credits goes to him."/>
+                </TextBlock>
+            </Expander>
+
+        </StackPanel>
+        <StackPanel 
+            VerticalAlignment="Top">
+
+            <GroupBox Header="  Settings  " 
+                      
+                      Margin="10,0,10,10"
+                      VerticalAlignment="Top">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="55"/>
+                        <RowDefinition Height="55"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Label Content="Type:" 
+                           HorizontalAlignment="Left" 
+                           Margin="10,5,0,0" 
+                           VerticalAlignment="Top"
+                           FontSize="12"
+                           FontWeight="Bold"/>
+                    
+                    <RadioButton Name="isDrafting" 
+                                 Content="Drafting" 
+                                 HorizontalAlignment="Left" 
+                                 Margin="90,10,0,0" 
+                                 VerticalAlignment="Top"/>
+                    
+                    <RadioButton Name="isModel" 
+                                 Content="Model" 
+                                 HorizontalAlignment="Left" 
+                                 Margin="240,10,0,0" 
+                                 VerticalAlignment="Top" 
+                                 IsChecked="True"/>
+                    
+                    <Label Content="Grid size:"
+                           Grid.Row="1"
+                           HorizontalAlignment="Left" 
+                           Margin="10,5,0,0" 
+                           VerticalAlignment="Top"
+                           FontSize="12"
+                           FontWeight="Bold"/>
+
+                    <MahControls:NumericUpDown Name="patGridX" 
+                             Grid.Row="1"
+                             HorizontalAlignment="Left" 
+                             Margin="90,30,0,0" 
+                             VerticalAlignment="Top"
+                             HasDecimals="False"
+                             HideUpDownButtons="False"
+                             Width="85"
+                             Minimum="1"
+                             Value="500"/>
+
+                    <MahControls:NumericUpDown Name="patGridY"
+                             Grid.Row="1"
+                             HorizontalAlignment="Left" 
+                             Margin="240,30,0,0" 
+                             HasDecimals="False"
+                             HideUpDownButtons="False"
+                             VerticalAlignment="Top"
+                             Width="85"
+                             Minimum="1"
+                             Value="500"/>
+                    
+                    <Label Content="X (mm)"
+                           Grid.Row="1"
+                           HorizontalAlignment="Left" 
+                           Margin="40,30,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="55" 
+                           FontSize="12"/>
+                    
+                    <Label Content="Y (mm)" 
+                           Grid.Row="1"
+                           HorizontalAlignment="Left" 
+                           Margin="190,30,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="55" 
+                           FontSize="12"/>
+                    
+                    <Label 
+                        Content="Name:"
+                        Grid.Row="2"
+                        HorizontalAlignment="Left" 
+                        Margin="10,10,0,0" 
+                        VerticalAlignment="Top" 
+                        FontSize="12"
+                        FontWeight="Bold"/>
+
+                    <TextBox MahControls:TextBoxHelper.Watermark="Must be unique" Name="patName" 
+                             Grid.Row="2"
+                             HorizontalAlignment="Left" 
+                             Margin="90,15,0,0" 
+                             TextWrapping="Wrap" 
+                             Text="" 
+                             VerticalAlignment="Top" 
+                             Width="240"
+                             KeyUp="PatName_KeyUp" 
+                             BorderThickness="0">
+
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type                                        TextBox}">
+                                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+
+                                                <Trigger Property="IsFocused" Value="true">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                             
+
+                </Grid>
+            </GroupBox>
+            <Grid>
+                <Button x:Name="Cancel" 
+                        Content="Cancel" 
+                        HorizontalAlignment="Left" 
+                        Margin="180,10,0,0" 
+                        VerticalAlignment="Top" 
+                        Width="75" 
+                        IsCancel="True" 
+                        Background="#FFDEDEDE" 
+                        BorderBrush="#FFA8A8A8" 
+                        Click="Cancel_Click" 
+                        FontSize="16"/>
+                
+                <Button x:Name="Ok" 
+                        Content="Ok" 
+                        HorizontalAlignment="Left" 
+                        VerticalContentAlignment="Center"
+                        Margin="270,10,20,20" 
+                        VerticalAlignment="Top" 
+                        Width="80" 
+                        IsDefault="True" 
+                        Background="#FF67C5E8" 
+                        Click="Ok_Click" 
+                        FontSize="16"
+                        IsEnabled="False"/>
+            </Grid>
+
+        </StackPanel>
+
+    </StackPanel>
+</MahControls:MetroWindow>

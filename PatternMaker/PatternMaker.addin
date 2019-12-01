@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Pattern Maker</Name>
+    <Assembly>PatternMaker.dll</Assembly>
+    <AddInId>5CF081C2-0A0F-4F34-AB10-9A16508FB9BE</AddInId>
+    <FullClassName>PatternMaker.Application</FullClassName>
+    <VendorId>Hoss Zamani</VendorId>
+    <VendorDescription>https://github.com/HossZamani</VendorDescription>
+  </AddIn>
+</RevitAddIns>

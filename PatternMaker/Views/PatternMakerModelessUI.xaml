@@ -1,0 +1,101 @@
+﻿<MahControls:MetroWindow 
+             x:Class="PatternMaker.Views.PatternMakerModelessUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:MahControls="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             SizeToContent="WidthAndHeight" 
+             Title="Pattern Maker" 
+             BorderThickness="0"  
+             FontSize="14" 
+             ResizeMode="NoResize" 
+             Loaded="ModelessWindow_Loaded" 
+             Closed="ModelessWindow_Closed" 
+           >
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF43A9E4" Offset="0"/>
+            <GradientStop Color="#FFF3F3F3" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+
+                <!-- accent resource -->
+                <!-- change "Cobalt" to the accent color you want -->
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Cobalt.xaml" />
+
+                <!-- theme resource -->
+                <!-- change "BaseLight" to the theme you want -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <StackPanel>
+            <Label Content="Draw your design" 
+               HorizontalAlignment="Center" 
+               Margin="0,0,0,10" 
+               VerticalAlignment="Top" 
+               FontSize="26" 
+               FontWeight="Light"/>
+
+            <Button x:Name="Cancel" 
+                Content="Cancel" 
+                HorizontalAlignment="Center" 
+                Margin="0,0,0,5" 
+                VerticalAlignment="Top" 
+                Width="225" 
+                IsCancel="True" 
+                Background="#FFDEDEDE" 
+                BorderBrush="#FFA8A8A8" 
+                Click="Cancel_Click" 
+                Height="35" 
+                FontSize="14"/>
+            <Button x:Name="Reset_Frame" 
+                Content="Change grid size" 
+                HorizontalAlignment="Center" 
+                Margin="0,5,0,5" 
+                VerticalAlignment="Top" 
+                Width="225" 
+                Background="#FFDEDEDE" 
+                BorderBrush="#FFA8A8A8" 
+                Click="Reset_Frame_Click" 
+                Height="35" 
+                FontSize="14"/>
+            <Button x:Name="preview" 
+                HorizontalAlignment="Center" 
+                Margin="0,5,0,5" 
+                VerticalAlignment="Top" 
+                Width="225" 
+                Background="#FFDEDEDE" 
+                BorderBrush="#FFA8A8A8" 
+                Click="preview_Click" 
+                Height="34" 
+                FontSize="14" 
+                Content="Preview pattern"/>
+            <Button x:Name="go" 
+                 Content="All good. Make the pattern" 
+                 HorizontalAlignment="Center" 
+                 Margin="0,10,0,10" 
+                 VerticalAlignment="Top" 
+                 Width="225" 
+                 IsDefault="True" 
+                 Background="#FF67C5E8" 
+                 Click="go_Click" 
+                 Height="45" 
+                 FontSize="14"
+                FontWeight="Medium"/>
+
+        </StackPanel>
+    </Grid>
+
+</MahControls:MetroWindow>
